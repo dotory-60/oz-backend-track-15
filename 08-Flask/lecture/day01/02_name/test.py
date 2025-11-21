@@ -1,0 +1,1 @@
+print(f"test.py => __name__ : {__name__}") # __main__
