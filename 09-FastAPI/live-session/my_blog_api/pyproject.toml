@@ -1,0 +1,60 @@
+[project]
+name = "my-blog-api"            # 프로젝트 이름
+version = "0.1.0"                # 버전 정보
+description = "Add your description here"   # 설명
+readme = "README.md"            # README 파일 경로
+requires-python = ">=3.13"      # 최소 파이썬 버전
+
+# 프로젝트 의존성 목록
+dependencies = [
+    "argon2-cffi>=25.1.0", # Argon2 비밀번호 해시 알고리즘(강력하고 안전한 해시) # JWT 생성/검증 라이브러리
+    "asyncpg>=0.30.0", # PostgreSQL async 드라이버
+    "fastapi>=0.121.3", # FastAPI 프레임워크
+    "greenlet>=3.2.4", # SQLAlchemy async 보조
+    "passlib>=1.7.4", # 비밀번호 해시 처리 라이브러리
+    "pydantic-settings>=2.12.0", # 환경 변수 관리
+    "pydantic[email]>=2.12.4", # 이메일 검증 기능 포함한 Pydantic
+    "python-jose[cryptography]>=3.5.0", # JWT 생성/검증 라이브러리
+    "python-multipart>=0.0.20",
+    "ruff>=0.14.5", # 코드 린터
+    "sqlalchemy>=2.0.44", # ORM
+    "uvicorn[standard]>=0.38.0", # FastAPI 서버
+]
+
+
+[tool.ruff]
+src = ["app"]                  # 검사 대상 디렉토리
+exclude = [
+    ".venv",                  # 가상환경 제외
+    "migrations",             # Alembic 마이그레이션 제외
+    "__pycache__",            # 캐시 폴더 제외
+]
+target-version = "py313"      # 타겟 파이썬 버전
+
+# 적용할 규칙 세트
+lint.select = [
+    "E",   # pycodestyle 에러
+    "F",   # pyflakes 검사
+    "I",   # import 정렬
+    "UP",  # 파이썬 최신 문법으로 업그레이드
+    "N",   # 네이밍 규칙 검사
+]
+
+lint.ignore = [
+    "E501",  # 길이 제한은 Black에 맡김
+]
+
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10            # 허용되는 최대 순환 복잡도
+
+
+[tool.ruff.lint.isort]
+combine-as-imports = true      # as import 묶기
+force-single-line = true       # import 한 줄씩 강제
+lines-after-imports = 2        # import 블록 뒤 공백 두 줄
+known-third-party = ["fastapi", "sqlalchemy", "pydantic"]  # 외부 라이브러리
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"         # Google 스타일 docstring 적용
