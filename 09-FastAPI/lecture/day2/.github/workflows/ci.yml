@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+
+
+jobs:
+  static-analysis: # mypy, black, ruff 등 정적 분석
+    runs-on: ubuntu-22.04 # 실제 프로덕션에서는 버전을 고정하는게 좋다
+    # 예기치 못하게 버전이 올라가서 장애나는 것을 막기 위해
+    steps:
+      - name: Check out the codes
+        uses: actions/checkout@v2
+
+      - name: Setup python enviroment
+        id: setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.13'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 - --version 1.8.5
+
+      - name: Register Poetry bin
+        run: echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: poetry install --no--root
+
+      - name: Run Black
+        run: poetry run black . --check
+
+      - name: Run Ruff
+        run: |
+          poetry run ruff check --select I
+          poetry run ruff check
+
+      - name: Run Mypy
+        run: poetry run mypy .
+
+  test: # 전체 테스트 실행
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out the codes
+        uses: actions/checkout@v2
+
+      - name: Setup python environment
+        id: setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.13"
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 - --version 1.8.5
+
+      - name: Register Poetry bin
+        run: echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: poetry install --no-root
+
+      - name: Run tests
+        run: |
+          poetry run coverage run -m pytest .
+          poetry run coverage report -m
