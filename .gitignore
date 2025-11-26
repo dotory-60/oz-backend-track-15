@@ -1,4 +1,19 @@
+# Python bytecode / cache
 __pycache__/
-*.pyc
-.env
+*.py[cod]
+*.pyo
+
+# 가상환경
 .venv/
+venv/
+env/
+
+# IDE 설정
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+# 기타
+*.log
