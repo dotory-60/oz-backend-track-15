@@ -1,2 +1,2 @@
-def test_simple() -> None:
-    print("abc")
+def add(a: int, b: int) -> int:
+    return a + b

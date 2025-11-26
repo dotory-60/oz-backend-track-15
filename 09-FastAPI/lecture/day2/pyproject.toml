@@ -17,6 +17,7 @@ ruff = "0.8.2"
 mypy = "1.13.0"
 pytest = "8.3.4"
 coverage = "7.6.9"
+pytest-asyncio = "0.25.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -35,3 +36,7 @@ strict = true
 
 [tool.coverage.run]
 omit = ["*/test_*.py"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
