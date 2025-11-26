@@ -32,3 +32,6 @@ target-version="py313"
 plugins = ["pydantic.mypy"]
 python_version = 3.13
 strict = true
+
+[tool.coverage.run]
+omit = ["*/test_*.py"]
