@@ -17,3 +17,7 @@ env/
 
 # 기타
 *.log
+
+# Django database
+*.sqlite3
+db.sqlite3
