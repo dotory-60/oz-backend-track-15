@@ -1,23 +1,65 @@
+# -----------------------------
 # Python bytecode / cache
+# -----------------------------
 __pycache__/
 *.py[cod]
 *.pyo
 
-# 가상환경
+# -----------------------------
+# 가상환경(로컬 전용)
+# -----------------------------
 .venv/
 venv/
 env/
+ENV/
+env.bak/
+venv.bak/
 
-# IDE 설정
-.idea/
-.vscode/
+# pyenv (원치 않으면 주석 해제해서 사용)
+#.python-version
 
-# macOS
-.DS_Store
-
-# 기타
-*.log
-
-# Django database
+# -----------------------------
+# Django 관련
+# -----------------------------
+# SQLite DB (로컬용 DB, 절대 올리지 않기)
 *.sqlite3
 db.sqlite3
+
+# Django static collect 결과물
+/staticfiles/
+/static_root/
+/media/
+/media_root/
+
+# Django 로컬 설정 파일 패턴 (있다면)
+local_settings.py
+
+# -----------------------------
+# IDE / 에디터 설정
+# -----------------------------
+.idea/
+.vscode/
+*.iml
+
+# PyCharm 프로젝트 설정(원하면 포함 가능, 보통 제외)
+*.ipr
+*.iws
+
+# -----------------------------
+# OS / 기타
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# 로그 파일
+*.log
+
+# -----------------------------
+# 패키지 관리자 관련 (선택)
+# -----------------------------
+# Poetry는 보통 pyproject.toml, poetry.lock 커밋 권장
+#poetry.toml
+
+# uv, pip 캐시
+.uv/
+pip-wheel-metadata/
