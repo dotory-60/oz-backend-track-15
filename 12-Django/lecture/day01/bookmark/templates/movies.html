@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+</head>
+<body>
+    <ol>
+        {% for movie in movie_list %}
+            {{ forloop.counter }}위: <a href="/movie_detail_html/{{ forloop.counter }}">{{ movie.title }}</a><br>
+        {% endfor %}
+    </ol>
+</body>
+</html>
