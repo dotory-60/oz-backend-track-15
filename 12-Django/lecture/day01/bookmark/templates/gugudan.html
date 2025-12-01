@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gugudan Result</title>
+</head>
+<body>
+    <h1>{{ context.index }}단</h1>
+    {% for dan in context.gugudan%}
+        <li style="font-weight: bold;">{{ dan }}</li><br>
+    {% endfor %}
+</body>
+</html>

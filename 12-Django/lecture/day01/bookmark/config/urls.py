@@ -19,6 +19,10 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import path
 
+###############
+#   Movie
+###############
+
 movie_list = [
     {"title": "기생충", "director": "봉준호"},
     {"title": "올드보이", "director": "박찬욱"},
@@ -31,7 +35,6 @@ movie_list = [
     {"title": "매트릭스", "director": "워쇼스키 자매"},
     {"title": "아바타", "director": "제임스 카메론"}
 ]
-
 
 def index(request):
     return HttpResponse("<h1>Hello world</h1>")
@@ -98,6 +101,25 @@ def movie_detail_html(request, index):
     }
     return render(request, "movie.html", {"context": context})
 
+###############
+#   Gugudan
+###############
+def gugudan(request, index):
+    if index < 1:
+        raise Http404
+
+    gugudan = []
+
+    for n in range(1, 10, 1):
+        gugudan.append(f"{index} * {n} = {index * n}")
+        print(f"{index} 단 : {index} * {n} = {index * n}")
+
+    print(gugudan)
+    context = {
+        "gugudan": gugudan,
+        "index": index
+    }
+    return render(request, "gugudan.html", {"context": context})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -118,5 +140,7 @@ urlpatterns = [
 
     # Render
     path('movies_html/', movies_html, name="movies_html"),
-    path('movie_detail_html/<int:index>', movie_detail_html, name="movie_detail_html")
+    path('movie_detail_html/<int:index>', movie_detail_html, name="movie_detail_html"),
+
+    path("gugudan/<int:index>", gugudan, name="gugudan")
 ]
