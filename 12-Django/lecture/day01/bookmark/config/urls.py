@@ -19,6 +19,8 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import path
 
+from bookmark import views
+
 ###############
 #   Movie
 ###############
@@ -141,6 +143,9 @@ urlpatterns = [
     # Render
     path('movies_html/', movies_html, name="movies_html"),
     path('movie_detail_html/<int:index>', movie_detail_html, name="movie_detail_html"),
+    path("gugudan/<int:index>", gugudan, name="gugudan"),
 
-    path("gugudan/<int:index>", gugudan, name="gugudan")
+    # bookmark list
+    path("bookmark/", views.bookmark_list),
+    path('bookmark/<int:number>', views.bookmark_detail)
 ]
