@@ -9,9 +9,11 @@
     {% for bookmark in bookmarks %}
         <p>
             <a href="/bookmark/{{ bookmark.id }}">
+                database_id ({{ bookmark.id }}) <br>
                 {{ bookmark.name }}
             </a>
         </p>
+        <hr>
     {% endfor %}
 </body>
 </html>

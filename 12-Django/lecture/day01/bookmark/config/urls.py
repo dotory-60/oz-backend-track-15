@@ -1,30 +1,10 @@
-"""
-URL configuration for config project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import path
-
 from bookmark import views
 
-###############
-#   Movie
-###############
-
+# Movie
 movie_list = [
     {"title": "기생충", "director": "봉준호"},
     {"title": "올드보이", "director": "박찬욱"},
@@ -103,9 +83,7 @@ def movie_detail_html(request, index):
     }
     return render(request, "movie.html", {"context": context})
 
-###############
-#   Gugudan
-###############
+# Gugudan
 def gugudan(request, index):
     if index < 1:
         raise Http404
@@ -125,27 +103,28 @@ def gugudan(request, index):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
-    path('book_list', book_list, name='book_list'),
-    path('book_list/<int:book_id>', book, name='book'),
-    path('language/<str:lang>', language, name="language"),
-
-    # 위에 있는 route로 인해 language/python이 무시됨
-    # 해결방법: 코드상 language/python 라우터를 language/<str:lang> 보다 올림
-    # 그럼 language/<str:lang>를 만나기 전에 language/python를 만나서 괜찮음
-    # 그런데 보통 argument 타입으로 string를 사용하지 않고 사용해도 조심해야 함!
-    # 위와 같은 상황이 일어날 수 있기 때문에!!!
-    path('language/python', python, name="python"),
-
-    path('movies', movies, name="movies"),
-    path('movie_detail/<int:index>', movie_detail, name="movie_detail"),
-
-    # Render
-    path('movies_html/', movies_html, name="movies_html"),
-    path('movie_detail_html/<int:index>', movie_detail_html, name="movie_detail_html"),
-    path("gugudan/<int:index>", gugudan, name="gugudan"),
+    # path('', index, name='index'),
+    # path('book_list', book_list, name='book_list'),
+    # path('book_list/<int:book_id>', book, name='book'),
+    # path('language/<str:lang>', language, name="language"),
+    #
+    # # 위에 있는 route로 인해 language/python이 무시됨
+    # # 해결방법: 코드상 language/python 라우터를 language/<str:lang> 보다 올림
+    # # 그럼 language/<str:lang>를 만나기 전에 language/python를 만나서 괜찮음
+    # # 그런데 보통 argument 타입으로 string를 사용하지 않고 사용해도 조심해야 함!
+    # # 위와 같은 상황이 일어날 수 있기 때문에!!!
+    # path('language/python', python, name="python"),
+    #
+    # path('movies', movies, name="movies"),
+    # path('movie_detail/<int:index>', movie_detail, name="movie_detail"),
+    #
+    # # Render
+    # path('movies_html/', movies_html, name="movies_html"),
+    # path('movie_detail_html/<int:index>', movie_detail_html, name="movie_detail_html"),
+    # path("gugudan/<int:index>", gugudan, name="gugudan"),
 
     # bookmark list
     path("bookmark/", views.bookmark_list),
-    path('bookmark/<int:number>', views.bookmark_detail)
+    path('bookmark/<int:pk>', views.bookmark_detail),
+    path("bookmark_50/", views.bookmark_50),
 ]
