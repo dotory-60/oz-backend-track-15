@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+
+    <h1>로그인</h1>
+
+    <p style="color: var(--sub-text); margin-bottom: 24px;">
+        가입하신 계정으로 로그인해 주세요.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div style="margin-bottom: 18px;">
+            <strong>아이디</strong>
+            {{ form.username }}
+        </div>
+
+        <div style="margin-bottom: 26px;">
+            <strong>비밀번호</strong>
+            {{ form.password }}
+        </div>
+
+        <button class="btn" style="width:100%">로그인</button>
+    </form>
+
+    <div class="divider"></div>
+
+    <p style="font-size:14px; text-align:center; color: var(--sub-text);">
+        아직 계정이 없으신가요?
+        <a class="link" href="{% url 'signup' %}">회원가입</a>
+    </p>
+
+</div>
+{% endblock %}
