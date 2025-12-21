@@ -46,7 +46,7 @@ def login(request):
             if next:
                 return redirect(next)
 
-            return redirect(reverse('blog_list')) # name을 찾아감
+            return redirect(reverse('blog:list')) # name을 찾아감
     else:
         form = AuthenticationForm(request)
 

@@ -30,7 +30,8 @@ def blog_list(request):
     context = {
         # 'blogs': blogs,
         'count': request.session['count'],
-        'page_object': page_object,
+        'object_list': page_object.object_list,
+        'page_obj': page_object,
     }
     response = render(request, 'blog_list.html', context)
     response.set_cookie('visits', visits)

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -26,6 +27,9 @@ class Blog(models.Model):
     # Django 모델 객체를 문자열로 표현할 때 어떤 문장을 보여줄지 결정하는 특별한 메서드
     def __str__(self):
         return f'[{self.get_category_display()}] {self.title[:10]}'
+
+    def get_absolute_url(self):
+        return reverse('blog:detail', kwargs={'pk': self.pk})
 
     # 관리자 화면에서 보이는 이름
     class Meta:
