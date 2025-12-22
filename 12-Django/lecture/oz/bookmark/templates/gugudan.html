@@ -1,0 +1,15 @@
+{% load humanize %} {# INSTALLED_APPS에 'django.contrib.humanize'을 추가해줘야함 #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ dan }}단</title>
+</head>
+<body>
+    <h1>{{ dan }}단</h1>
+    {% for result in results %}
+    	{{ dan|intcomma }} x {{ forloop.counter|intcomma }} = {{ result|intcomma }}<br> {# 강의에서는 widthratio 사용 #}
+    {% endfor %}
+</body>
+</html>

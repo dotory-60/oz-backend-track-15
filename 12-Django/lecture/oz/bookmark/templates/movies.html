@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>세계적으로 유명한 영화 목록</title>
+    <style>
+        body { width: 300px }
+    </style>
+</head>
+<body>
+    {% for movie in movie_list %}
+        {% if forloop.counter <= 20 %}
+            {{ forloop.counter }}위 : <a href="/movie/{{ forloop.counter0 }}">{{ movie.title }}</a><br>
+            관객수 : {{ movie.audience }}명
+            <hr>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
