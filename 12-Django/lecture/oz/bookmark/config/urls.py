@@ -19,8 +19,6 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import path
 
-from bookmark import views
-
 movie_list = [
     {
         "title": "Avatar",
@@ -303,14 +301,13 @@ def gugudan(request, dan):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bookmark/', views.bookmark_list),
-    path('bookmark/<int:pk>', views.bookmark_detail),
+    path('', index),
+    path('book/all', books),
+    path('book/<int:idx>', book),
+    path('lang/<str:lang>', language), # str은 특별한 경우에만 사용
 
-    # path('', index),
-    # path('book/all', books),
-    # path('book/<int:idx>', book),
-    # path('lang/<str:lang>', language), # str은 특별한 경우에만 사용
-    # path('movie/all', movies),
-    # path('movie/<int:idx>', movie),
-    # path('gugudan/<int:dan>', gugudan),
+    path('movie/all', movies),
+    path('movie/<int:idx>', movie),
+
+    path('gugudan/<int:dan>', gugudan),
 ]
