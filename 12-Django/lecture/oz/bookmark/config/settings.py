@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 ]
+
+OWN_APPS = [
+    'bookmark',
+]
+
+THIRD_APPS = [
+    'django_extensions'
+]
+
+INSTALLED_APPS = DJANGO_APPS + OWN_APPS + THIRD_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,24 +97,31 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
+        # 사용자 정보(아이디, 이메일 등)와
+        # 비슷한 비밀번호 사용을 막음
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
+        # 비밀번호 최소 길이 제한 (기본값: 8자)
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
+        # "password", "123456" 같은
+        # 너무 흔한 비밀번호 사용을 막음
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
+        # 숫자로만 이루어진 비밀번호 사용을 막음
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-KR'
 
 TIME_ZONE = 'UTC'
 
