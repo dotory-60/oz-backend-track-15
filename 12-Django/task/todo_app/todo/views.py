@@ -24,3 +24,12 @@ def todo_info(request, todo_id):
         return render(request, 'todo_info.html', {'data': info})
     except Todo.DoesNotExist:
         raise Http404("Todo does not exist")
+
+def todo_create(request):
+    pass
+
+def todo_update(request, pk):
+    pass
+
+def todo_delete(request, pk):
+    pass
