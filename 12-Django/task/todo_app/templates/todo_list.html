@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User List</title>
+    <title>To Do List</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,13 +44,33 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Todo List</h1>
+    <nav>
+        {% if request.user.is_authenticated %}
+            <div style="text-align: right; font-size: 20px; display: flex; justify-content: space-between">
+                {{ request.user.username }}
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button style="border: 0; font-size: 20px">Logout</button>
+                </form>
+            </div>
+        {% else %}
+            <div style="display: flex; justify-content: right; font-size: 20px;">
+                <a href="{% url 'signup' %}" style="margin-right: 10px">SignUp</a>
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        {% endif %}
+    </nav>
+    <div class="container" style="margin-top: 15px">
+        {% if request.user.is_authenticated %}
+        <h1>{{ request.user.username }}의 Todo List</h1>
         <ul>
             {% for todo in data %}
                 <li><a href="{% url 'todo_info' todo.id %}">{{ todo.title }}</a></li>
             {% endfor %}
         </ul>
+	        {% else %}
+	            <h1>회원가입 또는 로그인을 진행해주세요.</h1>
+	        {% endif %}
     </div>
 </body>
 </html>

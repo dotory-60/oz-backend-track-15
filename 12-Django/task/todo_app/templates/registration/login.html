@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* 기본적인 스타일 초기화 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+
+        /* 로그인 컨테이너 */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 화면 전체 높이 */
+        }
+
+        /* 로그인 박스 */
+        .login-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* 제목 스타일 */
+        .login-box h2 {
+            margin: 0 0 20px 0;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* 폼 요소 스타일 */
+        form p {
+            margin: 10px 0;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 93%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* 버튼 스타일 */
+        .login-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="login-button">Login</button>
+                <span>
+                    아직 회원이 아니라면 회원가입을 진행해주세요.
+                    <a href="{% url 'signup' %}">회원가입</a>
+                </span>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
