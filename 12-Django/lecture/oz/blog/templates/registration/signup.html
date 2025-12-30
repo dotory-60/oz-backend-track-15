@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>회원가입</h1>
+{% extends 'base.html' %}
+{% block content %}
+	<h1>SIGNUP</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }} {# as_p() = HTML 문자열 생성 메서드 #}
         <button>회원가입</button>
     </form>
-</body>
-</html>
+{% endblock %}

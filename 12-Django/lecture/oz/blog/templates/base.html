@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <nav style="display: flex; justify-content: space-between;">
+        <div>
+            <a href="{% url "blog_list" %}">HOME</a>
+        </div>
+        <div style="text-align: right;">
+            {% if request.user.is_authenticated %}
+            	<form action="{% url 'logout' %}" method="POST" style="display: inline">
+                {% csrf_token %}
+                <button>LOGOUT</button>
+                </form>
+                {{ request.user.username }}
+            {% else %}
+                <a href="{% url 'signup' %}">SIGNUP</a>
+                <a href="{% url 'login' %}">LOGIN</a>
+            {% endif %}
+        </div>
+    </nav>
+    {% block content %}
+    	
+    {% endblock %}
+</body>
+</html>

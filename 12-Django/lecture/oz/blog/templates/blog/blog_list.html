@@ -1,31 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <nav>
-        <div style="text-align: right;">
-            {% if request.user.is_authenticated %}
-            	<form action="{% url 'logout' %}" method="POST" style="display: inline">
-                {% csrf_token %}
-                <button>LOGOUT</button>
-                </form>
-                {{ request.user.username }}
-            {% else %}
-                <a href="{% url 'signup' %}">SIGNUP</a>
-                <a href="{% url 'login' %}">LOGIN</a>
-            {% endif %}
-        </div>
-    </nav>
-    <h1>블로그 목록 {{ count }}</h1>
+{% extends 'base.html' %}
+{% block content %}
+	<h1>블로그 목록</h1>
+    <p>내가 직접 방문한 횟수 : {{ count }}</p>
     {% for blog in blogs %}
         <p>
             <a href="{% url 'blog_detail' blog.pk %}">
-                {{ blog.title }} - <small>{{ blog.created_at | date:"Y년 m월 d일" }}</small>
+                {{ blog.title }} ({{ blog.author.username }}) - <small>{{ blog.created_at | date:"Y년 m월 d일" }}</small>
             </a>
         </p>
     {% endfor %}
-</body>
-</html>
+{% endblock %}

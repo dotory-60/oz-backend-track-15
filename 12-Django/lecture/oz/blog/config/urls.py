@@ -5,8 +5,13 @@ from member import views as member_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # blog
     path('', blog_views.blog_list, name="blog_list"),
     path('<int:pk>/', blog_views.blog_detail, name="blog_detail"),
+    path('create/', blog_views.blog_create, name="blog_create"),
+
+    # auth
     path('accounts/', include("django.contrib.auth.urls")),
     path('signup/', member_views.signup, name="signup"),
     path('login/', member_views.login, name="login"),

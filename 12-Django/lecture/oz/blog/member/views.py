@@ -37,6 +37,11 @@ def login(request):
     form = AuthenticationForm(request, request.POST or None)
     if form.is_valid():
         django_login(request, form.get_user())
+
+        next = request.GET.get('next')
+        if next:
+            return redirect(next)
+
         return redirect(reverse('blog_list')) # config/urls.py에서 찾은 path name
 
     context = { 'form': form }
