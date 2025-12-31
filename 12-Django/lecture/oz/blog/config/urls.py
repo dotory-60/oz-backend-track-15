@@ -10,6 +10,7 @@ urlpatterns = [
     path('', blog_views.blog_list, name="blog_list"),
     path('<int:pk>/', blog_views.blog_detail, name="blog_detail"),
     path('create/', blog_views.blog_create, name="blog_create"),
+    path('<int:pk>/update/', blog_views.blog_update, name="blog_update"),
 
     # auth
     path('accounts/', include("django.contrib.auth.urls")),
